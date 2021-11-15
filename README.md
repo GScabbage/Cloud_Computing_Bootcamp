@@ -148,3 +148,18 @@ source ~/.bashrc
 - Scaling up vs Scaling out
 - Scaling up - increases the size of your instance
 - Scaling Out - increases the number of instances
+
+## S3
+- Amazon Simple Storage
+#### commands
+- `aws s3 ls` to list all buckets
+- `aws --version`
+- `aws configure` add keys and configure
+- `aws s3 mb s3://name-of-bucket --region name`
+- `aws s3 cp s3://name-of-bucket file` to copy a file or contents of bucket
+- `aws s3 rm s3://name-of-bucket --recursive` delete all files from bucket remove recursive to target specific files
+- `aws s3 rb s3://name-of-bucket` delete bucket, needs to be empty
+- `aws s3 sync s3://name-of-bucket syncfolder` make a folder that all files automatically sync to specific bucket
+
+### AWSCLI
+- AWSCLI can be used to create any AWS resource required
