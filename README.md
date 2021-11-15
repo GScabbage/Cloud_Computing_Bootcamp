@@ -119,3 +119,22 @@ source ~/.bashrc
 - then got to images and templates then select create image
 - you can give it a name, and change a few setting then you can create your image
 - any programs currently running on your instance when it is made into an AMI will also be running when you start your new instance with your AMI
+
+## Monitoring
+### 4 Golden Signals
+- Latency: Time to complete request
+- Traffic: Measure of Demand
+- Errors: Services Failing
+- Saturation: How Full is the service
+
+### Automation of Monitoring Response
+- Application Load Balancer (ALB)
+- Autoscaling Group
+- Launch Template Config - how many instances at all times
+- 2 instances - min=2 max=3
+- Policies of scaling out and scaling in to minimum
+
+#### Scaling on Demand
+- Scaling up vs Scaling out
+- Scaling up - increases the size of your instance
+- Scaling Out - increases the number of instances
