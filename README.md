@@ -139,7 +139,7 @@ source ~/.bashrc
 
 ### Automation of Monitoring Response
 - Application Load Balancer (ALB)
-- Autoscaling Group
+- Auto Scaling Group
 - Launch Template Config - how many instances at all times
 - 2 instances - min=2 max=3
 - Policies of scaling out and scaling in to minimum
@@ -148,6 +148,39 @@ source ~/.bashrc
 - Scaling up vs Scaling out
 - Scaling up - increases the size of your instance
 - Scaling Out - increases the number of instances
+
+## Creating an Auto Scaling Group
+- Before beginning make sure to create the AMIs you need for your ASG so you can create a launch template with them
+### Launch Templates
+- First assign a name to your template, using the standard naming convention
+- Tick the tickbox about setting a template for an ec2 instance just to ensure nothing is missed
+- Add a template tag for the name
+- Choose the AMI you have prepared for the template
+- Then assign the instance type, generally the standard t2.micro is good
+- Next assign a security group to it, this doesn't actually have to be assigned here depends how you are doing your VPC's and such
+- Then go into advanced details, scroll to the bottom and add to the user data any commands you wish the instance to run as part of its start up
+- This is useful if you want to install modules or start an application
+- Then move onto creation of the Auto Scaling Group itself
+### Configuring the ASG
+- Like the launch template, first thing is to assign a name to your ASG
+- Then select launch template for it that we made in the previous section
+- It asks to select a VPC, if this is going to be a part of an existing VPC group then select that one otherwise just leave the default one it has made
+- For the Availability zones, select the ones you think are appropriate but that will most likely be eu-west-1 a, b and c
+- Move onto the next section and assign a load balancer, you can use an existing one but is probably better to just create a new one
+- Select HTTP/HTTPS or the application load balancer
+- It should generate a name for itself but you can change it if you like
+- App is most likely internet facing so select that option next
+- For listeners and routing, add a new dault routing group which should generate an automatic name but this can be changed like before
+- For health checks enable ELB and set it to check the instance health for an appropriate amount of time, the standard 5 minutes should be fine
+- Select the last tickbox so group metrics are enabled with Cloudwatch
+- Next is group sizes, where you can set minimum, maximum and desired numbers of instances running, for this app i set at min and desired at 2 and 3 for max
+- The scaling policy now needs to be decide, this is the condition that must be met for the ASG to start up a new instance
+- Generally CPU utilization is the easiest category to set, choose a value for it that should be desirable for your instances
+- Next onto notifcations from the ASG, so you can either assign a premade SNS group or you can create a new topic
+- Then is tags which should be fine, if you want to add anything then do
+- Finally review everything to ensure it is correct, then create the group
+- This will auto launch the minimum instances to get your app working
+
 
 ## S3
 - Amazon Simple Storage

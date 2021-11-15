@@ -63,6 +63,15 @@ def delete_bucket(bucket,file_name,object_name=None):
     bucket.objects.all().delete()
     bucket.delete()
 
+def bucket_rampage():
+    bucket=input('Please enter the name you wish to give you bucket: ')
+    file_name=input('Please enter the name of the file you wish to send: ')
+    file_name2=input('Please enter the return file name: ')
+    create_bucket(bucket)
+    upload_file(file_name,bucket,object_name=None)
+    download_file(file_name,bucket,file_name2)
+    delete_bucket(bucket,file_name,object_name=None)
 
 delete_bucket('devops-gswirsky-bootcamp-python','test.txt')
 #create_bucket('devops-gswirsky-bootcamp-python')
+#bucket_rampage()
