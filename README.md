@@ -127,6 +127,16 @@ source ~/.bashrc
 - Errors: Services Failing
 - Saturation: How Full is the service
 
+### Basic Monitoring on AWS
+- Select an instance and select Monitoring for that instance, you can enable detailed Monitoring from here
+- This will show a variety of useful information such as CPU usage
+- This can then be added to an information dashboard, detailed Monitoring does cost extra on AWS
+- You can add alarms to monitored instance for when specific criteria are exceeded or change to an unexpected value
+- This can be done quickly through pressing the `+` in the alarm status column or in the alarms section of the Cloudwatch area
+- If done through the Cloudwatch area the alarm is not for a specific instance until it is assigned
+- Once your first alarm is created you can create an sns group for it so when the alarm triggers you receive a notifcation through your desired means such as email
+- When you add an SNS group to an alarm you will need to confirm the subscription to it
+
 ### Automation of Monitoring Response
 - Application Load Balancer (ALB)
 - Autoscaling Group
