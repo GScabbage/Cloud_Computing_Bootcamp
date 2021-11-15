@@ -110,3 +110,12 @@ source ~/.bashrc
 ```
 - then the database needs to be seeded using `path/seed.js`
 - now you can start the app up again and it will connect to the db
+
+## Replications through AMIs
+- from any instance you can creature a duplicate machine image called an `AMI`
+- this allows you to easily replicate a preconfigured instance and allows you to return to an earlier point if something goes wrong
+- basically the save game of AWS
+- to do it, select the instance you want to make an AMI from and go to actions
+- then got to images and templates then select create image
+- you can give it a name, and change a few setting then you can create your image
+- any programs currently running on your instance when it is made into an AMI will also be running when you start your new instance with your AMI
