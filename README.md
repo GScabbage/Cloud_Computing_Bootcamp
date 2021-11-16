@@ -196,3 +196,25 @@ source ~/.bashrc
 
 ### AWSCLI
 - AWSCLI can be used to create any AWS resource required
+
+![](images/vpc.png)
+
+# VPC
+- Step 1: VPC CIDR block 10.105.0.0/16
+
+- Step 2: Internet Gateway
+- Step 2.1 - attach the IG to VPC
+
+- Step 3: Route Table RT
+- Step 3.1 - allow 10.105.0.0/16
+- Step 3.2 - allows all 0.0.0.0/16
+
+- Step 4: Public Subnet 10.105.1.0/24
+- Step 4.1 - connect to VPC
+- Step 4.2 - Private Subnet 10.105.2.0/24 - used for Mongodb 27017
+
+- Step 5: associate public subnet to our RT
+
+- Step 6: Security groups public and private with required rules for public and private subnet
+
+- Step 7:
