@@ -197,9 +197,10 @@ source ~/.bashrc
 ### AWSCLI
 - AWSCLI can be used to create any AWS resource required
 
+# VPC
+
 ![](images/vpc.png)
 
-# VPC
 - Step 1: VPC CIDR block 10.105.0.0/16
 
 - Step 2: Internet Gateway
@@ -216,5 +217,20 @@ source ~/.bashrc
 - Step 5: associate public subnet to our RT
 
 - Step 6: Security groups public and private with required rules for public and private subnet
+- Step 6.1 - for the app this will be allowing you to ssh on port 22, HTTP on port 80 and port 3000 just to check if nginx doesn't work, this will be from all IP addresses
+- Step 6.2 - for the db this will be allowing you ssh on port 22 and connect to the database on port 27017, but this should only be possible from IP's from the app's subnet
 
-- Step 7:
+- Step 7: create the instances for the app and the db
+- Step 7.1 - do the standard instance creation for the app but assign it to the VPC created earlier and assign it the public subnet and its preconfigured security group
+- Step 7.2 - for the database it is much the same except use the private subnet, use no public ip and assing it to the database preconfigured security group
+
+- Step 8: ssh to the app instance then from the app instance to the db to ensure the db is running correctly
+- run these command to achieve this
+```
+ssh-agent bash
+ssh-add key.pem
+ssh -A user@appinstanceip
+#then once ssh into the app do
+ssh user@dbinstanceip
+```
+- Step 8.1 - return to the app instance shell, then change the `DB_HOST` environment variable to the new private ip of the database instance
